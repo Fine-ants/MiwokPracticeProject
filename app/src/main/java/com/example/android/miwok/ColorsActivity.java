@@ -17,6 +17,10 @@ package com.example.android.miwok;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.GridView;
+
+import java.util.ArrayList;
 
 public class ColorsActivity extends AppCompatActivity {
 
@@ -24,5 +28,25 @@ public class ColorsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_colors);
+
+
+        // Store each word object into array
+        ArrayList<Word> colors = new ArrayList<>();
+        colors.add(new Word("green", "green definition"));
+        colors.add(new Word("blue", "blue definition"));
+        colors.add(new Word("yellow", "yellow definition"));
+        colors.add(new Word("red", "red definition"));
+        colors.add(new Word("orange", "orange definition"));
+        colors.add(new Word("black", "black definition"));
+
+
+        // Instantiate custom word adapter
+        WordAdapter wordAdapter = new WordAdapter(this, colors);
+
+        // Set the custom word adapter
+        GridView gridView = (GridView) findViewById(R.id.colors_gridView);
+        gridView.setAdapter(wordAdapter);
+
+
     }
 }
