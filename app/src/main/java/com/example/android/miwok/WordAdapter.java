@@ -1,6 +1,7 @@
 package com.example.android.miwok;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, @NonNull View convertView, ViewGroup parent) {
         View listItemView = convertView;
         if(convertView==null){
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
