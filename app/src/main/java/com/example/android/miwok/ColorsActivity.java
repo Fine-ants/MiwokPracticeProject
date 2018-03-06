@@ -19,6 +19,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -27,7 +28,7 @@ public class ColorsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_colors);
+        setContentView(R.layout.list_view);
 
 
         // Store each word object into array
@@ -44,8 +45,8 @@ public class ColorsActivity extends AppCompatActivity {
         WordAdapter wordAdapter = new WordAdapter(this, colors);
 
         // Set the custom word adapter
-        GridView gridView = (GridView) findViewById(R.id.colors_gridView);
-        gridView.setAdapter(wordAdapter);
+        ListView listView = findViewById(R.id.list);
+        listView.setAdapter(wordAdapter);
 
 
     }

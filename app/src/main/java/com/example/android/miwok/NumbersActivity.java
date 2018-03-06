@@ -17,7 +17,6 @@ package com.example.android.miwok;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -27,23 +26,24 @@ public class NumbersActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_numbers);
+        setContentView(R.layout.list_view);
 
 
-        ArrayList<String> numbers = new ArrayList<>();
-        numbers.add("one");
-        numbers.add("two");
-        numbers.add("three");
-        numbers.add("four");
-        numbers.add("five");
-        numbers.add("six");
-        numbers.add("seven");
-        numbers.add("eight");
-        numbers.add("nine");
-        numbers.add("ten");
+        ArrayList<Word> numbers = new ArrayList<>();
+        numbers.add(new Word("one", "1"));
+        numbers.add(new Word("two", "2"));
+        numbers.add(new Word("three", "3"));
+        numbers.add(new Word("four", "4"));
+        numbers.add(new Word("five", "5"));
+        numbers.add(new Word("six", "6"));
+        numbers.add(new Word("seven", "7"));
+        numbers.add(new Word("eight", "8"));
+        numbers.add(new Word("nine", "9"));
+        numbers.add(new Word("ten", "10"));
 
 
-        ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, numbers);
+
+        WordAdapter itemsAdapter = new WordAdapter(this, numbers);
 
         ListView listView = (ListView) findViewById(R.id.list);
 
@@ -51,3 +51,22 @@ public class NumbersActivity extends AppCompatActivity {
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

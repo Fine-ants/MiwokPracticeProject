@@ -17,12 +17,41 @@ package com.example.android.miwok;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class PhrasesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_phrases);
+        setContentView(R.layout.list_view);
+
+        // Create array list of phrases
+        ArrayList<Word> phrases = new ArrayList<>();
+        phrases.add(new Word("phrase 1", "meaning 1"));
+        phrases.add(new Word("phrase 2", "meaning 2"));
+        phrases.add(new Word("phrase 3", "meaning 3"));
+        phrases.add(new Word("phrase 4", "meaning 4"));
+        phrases.add(new Word("phrase 5", "meaning 5"));
+        phrases.add(new Word("phrase 6", "meaning 6"));
+        phrases.add(new Word("phrase 7", "meaning 7"));
+        phrases.add(new Word("phrase 8", "meaning 8"));
+        phrases.add(new Word("phrase 9", "meaning 9"));
+        phrases.add(new Word("phrase 10", "meaning 10"));
+        phrases.add(new Word("phrase 11", "meaning 11"));
+        phrases.add(new Word("phrase 12", "meaning 12"));
+        phrases.add(new Word("phrase 13", "meaning 13"));
+
+
+        // Instantiate word adapter object
+        WordAdapter wordAdapter = new WordAdapter(this, phrases);
+
+
+        // Set the adapter to the listView
+        ListView listView = findViewById(R.id.list);
+        listView.setAdapter(wordAdapter);
+
     }
 }
