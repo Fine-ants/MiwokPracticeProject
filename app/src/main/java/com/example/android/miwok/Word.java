@@ -23,4 +23,12 @@ public class Word {
     public String getDefinition() {
         return definition;
     }
+
+    @Override
+    public String toString() {
+        return "Word{" +
+                "word='" + word + '\'' +
+                ", definition='" + definition + '\'' +
+                '}';
+    }
 }
