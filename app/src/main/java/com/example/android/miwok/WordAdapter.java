@@ -33,12 +33,12 @@ public class WordAdapter extends ArrayAdapter<Word> {
 
         // Set word text
         TextView word_textView = (TextView) listItemView.findViewById(R.id.word);
-        word_textView.setText(word.getWord());
+        word_textView.setText(word.getEnglishWord());
 
 
         // Set definition text
         TextView definition_textView = (TextView) listItemView.findViewById(R.id.definition);
-        definition_textView.setText(word.getDefinition());
+        definition_textView.setText(word.getMiwokTranslation());
 
 
         return listItemView;

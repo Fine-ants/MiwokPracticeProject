@@ -5,30 +5,29 @@ package com.example.android.miwok;
  */
 
 public class Word {
-    private String word;
-    private String definition;
+    private String englishWord;
+    private String miwokTranslation;
 
 
-    // Constructor
-    public Word(String word, String definition) {
-        this.word = word;
-        this.definition = definition;
+    public Word(String englishWord, String miwokTranslation) {
+        this.englishWord = englishWord;
+        this.miwokTranslation = miwokTranslation;
     }
 
-
-    public String getWord() {
-        return word;
-    }
-
-    public String getDefinition() {
-        return definition;
-    }
 
     @Override
     public String toString() {
         return "Word{" +
-                "word='" + word + '\'' +
-                ", definition='" + definition + '\'' +
+                "englishWord='" + englishWord + '\'' +
+                ", miwokTranslation='" + miwokTranslation + '\'' +
                 '}';
+    }
+
+    public String getEnglishWord() {
+        return englishWord;
+    }
+
+    public String getMiwokTranslation() {
+        return miwokTranslation;
     }
 }
