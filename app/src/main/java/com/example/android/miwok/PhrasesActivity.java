@@ -30,19 +30,16 @@ public class PhrasesActivity extends AppCompatActivity {
 
         // Create array list of phrases
         ArrayList<Word> phrases = new ArrayList<>();
-        phrases.add(new Word("phrase 1", "meaning 1"));
-        phrases.add(new Word("phrase 2", "meaning 2"));
-        phrases.add(new Word("phrase 3", "meaning 3"));
-        phrases.add(new Word("phrase 4", "meaning 4"));
-        phrases.add(new Word("phrase 5", "meaning 5"));
-        phrases.add(new Word("phrase 6", "meaning 6"));
-        phrases.add(new Word("phrase 7", "meaning 7"));
-        phrases.add(new Word("phrase 8", "meaning 8"));
-        phrases.add(new Word("phrase 9", "meaning 9"));
-        phrases.add(new Word("phrase 10", "meaning 10"));
-        phrases.add(new Word("phrase 11", "meaning 11"));
-        phrases.add(new Word("phrase 12", "meaning 12"));
-        phrases.add(new Word("phrase 13", "meaning 13"));
+        phrases.add(new Word("Where are you going?", "minto wuksus"));
+        phrases.add(new Word("What is your name?", "tinnә oyaase'nә"));
+        phrases.add(new Word("My name is...", "oyaaset..."));
+        phrases.add(new Word("How are you feeling?", "michәksәs?"));
+        phrases.add(new Word("I'm feeling good.", "kuchi achit"));
+        phrases.add(new Word("Are you coming?", "әәnәs'aa?"));
+        phrases.add(new Word("Yes, I'm coming.", "hәә’ әәnәm"));
+        phrases.add(new Word("I'm coming.", "әәnәm"));
+        phrases.add(new Word("Let's go.", "yoowutis"));
+        phrases.add(new Word("Come here.", "әnni'nem"));
 
 
         // Instantiate word adapter object
