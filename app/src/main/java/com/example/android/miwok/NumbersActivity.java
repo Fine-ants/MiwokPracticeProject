@@ -30,22 +30,22 @@ public class NumbersActivity extends AppCompatActivity {
 
 
         ArrayList<Word> numbers = new ArrayList<>();
-        numbers.add(new Word("one", "1"));
-        numbers.add(new Word("two", "2"));
-        numbers.add(new Word("three", "3"));
-        numbers.add(new Word("four", "4"));
-        numbers.add(new Word("five", "5"));
-        numbers.add(new Word("six", "6"));
-        numbers.add(new Word("seven", "7"));
-        numbers.add(new Word("eight", "8"));
-        numbers.add(new Word("nine", "9"));
-        numbers.add(new Word("ten", "10"));
+        numbers.add(new Word("one", "lutti"));
+        numbers.add(new Word("two", "otiiko"));
+        numbers.add(new Word("three", "tolookosu"));
+        numbers.add(new Word("four", "oyyisa"));
+        numbers.add(new Word("five", "massokka"));
+        numbers.add(new Word("six", "temmokka"));
+        numbers.add(new Word("seven", "kenekaku"));
+        numbers.add(new Word("eight", "kawinta"));
+        numbers.add(new Word("nine", "wo’e"));
+        numbers.add(new Word("ten", "na’aacha"));
 
 
 
         WordAdapter itemsAdapter = new WordAdapter(this, numbers);
 
-        ListView listView = (ListView) findViewById(R.id.list);
+        ListView listView = findViewById(R.id.list);
 
         listView.setAdapter(itemsAdapter);
 
