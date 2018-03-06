@@ -31,12 +31,14 @@ public class ColorsActivity extends AppCompatActivity {
 
         // Store each word object into array
         ArrayList<Word> colors = new ArrayList<>();
-        colors.add(new Word("green", "green definition"));
-        colors.add(new Word("blue", "blue definition"));
-        colors.add(new Word("yellow", "yellow definition"));
-        colors.add(new Word("red", "red definition"));
-        colors.add(new Word("orange", "orange definition"));
-        colors.add(new Word("black", "black definition"));
+        colors.add(new Word("red", "weṭeṭṭi"));
+        colors.add(new Word("green", "chokokki"));
+        colors.add(new Word("brown", "ṭakaakki"));
+        colors.add(new Word("gray", "ṭopoppi"));
+        colors.add(new Word("black", "kululli"));
+        colors.add(new Word("white", "kelelli"));
+        colors.add(new Word("dusty yellow", "ṭopiisә"));
+        colors.add(new Word("mustard yellow", "chiwiiṭә"));
 
 
         // Instantiate custom word adapter
