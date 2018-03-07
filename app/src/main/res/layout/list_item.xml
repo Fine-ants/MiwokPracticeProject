@@ -18,8 +18,7 @@
         android:layout_height="match_parent"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
-        android:orientation="vertical"
-        tools:background="#335577">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/word"

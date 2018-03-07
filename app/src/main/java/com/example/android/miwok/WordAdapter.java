@@ -2,6 +2,7 @@ package com.example.android.miwok;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
  */
 
 public class WordAdapter extends ArrayAdapter<Word> {
-    int transationBackgroundColor;
+    private int transationBackgroundColor;
 
 
     public WordAdapter(Context context, ArrayList<Word> objects, int translationBackgroundColor) {
@@ -52,13 +53,16 @@ public class WordAdapter extends ArrayAdapter<Word> {
         if(word.hasImage()){
             imageView.setVisibility(View.VISIBLE);
             imageView.setImageResource(word.getImageResourceId());
+            Log.i("debugtag", "Visible");
         }else{
-            imageView.setVisibility(View.INVISIBLE);
+            imageView.setVisibility(View.GONE);
+            Log.i("debugtag", "Invisible");
         }
 
         // Set linear layout background color
         LinearLayout translationLinearLayout = listItemView.findViewById(R.id.wordsLayout);
-        translationLinearLayout.setBackgroundColor(transationBackgroundColor);
+        int color = ContextCompat.getColor(getContext(), transationBackgroundColor);
+        translationLinearLayout.setBackgroundColor(color);
 
 
         return listItemView;
