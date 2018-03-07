@@ -15,6 +15,7 @@
  */
 package com.example.android.miwok;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -48,6 +49,9 @@ public class NumbersActivity extends AppCompatActivity {
         ListView listView = findViewById(R.id.list);
 
         listView.setAdapter(itemsAdapter);
+
+        // Set list view background color
+        listView.setBackgroundColor(Color.rgb(214,122,23));
 
     }
 }

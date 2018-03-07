@@ -15,6 +15,7 @@
  */
 package com.example.android.miwok;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -49,6 +50,9 @@ public class PhrasesActivity extends AppCompatActivity {
         // Set the adapter to the listView
         ListView listView = findViewById(R.id.list);
         listView.setAdapter(wordAdapter);
+
+        // Set list view background color
+        listView.setBackgroundColor(Color.rgb(2,210,221));
 
     }
 }

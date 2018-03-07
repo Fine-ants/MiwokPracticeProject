@@ -15,6 +15,7 @@
  */
 package com.example.android.miwok;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -47,5 +48,8 @@ public class FamilyActivity extends AppCompatActivity {
         ListView listView = findViewById(R.id.list);
         listView.setAdapter(wordAdapter);
 
+
+        // Background color to green
+        listView.setBackgroundColor(Color.rgb(155,220,62));
     }
 }
