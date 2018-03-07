@@ -2,6 +2,7 @@ package com.example.android.miwok;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +45,12 @@ public class WordAdapter extends ArrayAdapter<Word> {
 
         // Set image drawable
         ImageView imageView = listItemView.findViewById(R.id.image);
-        imageView.setImageResource(word.getImageResourceId());
+        if(word.HAS_IMAGE()){
+            imageView.setVisibility(View.VISIBLE);
+            imageView.setImageResource(word.getImageResourceId());
+        }else{
+            imageView.setVisibility(View.INVISIBLE);
+        }
 
 
         return listItemView;
