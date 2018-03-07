@@ -42,7 +42,7 @@ public class Word {
         return imageResourceId;
     }
 
-    public boolean HAS_IMAGE() {
+    public boolean hasImage() {
         return imageResourceId != NO_IMAGE_PROVIDED;
     }
 }
