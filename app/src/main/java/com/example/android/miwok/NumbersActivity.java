@@ -43,15 +43,13 @@ public class NumbersActivity extends AppCompatActivity {
         numbers.add(new Word("ten", "na’aacha", R.drawable.number_ten));
 
 
+        // Instantiate custom word adapter
+        WordAdapter itemsAdapter = new WordAdapter(this, numbers, R.color.category_numbers);
 
-        WordAdapter itemsAdapter = new WordAdapter(this, numbers);
 
+        // Set the adapter to the listView
         ListView listView = findViewById(R.id.list);
-
         listView.setAdapter(itemsAdapter);
-
-        // Set list view background color
-        listView.setBackgroundColor(Color.rgb(214,122,23));
 
     }
 }

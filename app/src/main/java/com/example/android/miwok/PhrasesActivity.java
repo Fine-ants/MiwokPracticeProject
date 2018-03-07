@@ -44,15 +44,12 @@ public class PhrasesActivity extends AppCompatActivity {
 
 
         // Instantiate word adapter object
-        WordAdapter wordAdapter = new WordAdapter(this, phrases);
+        WordAdapter wordAdapter = new WordAdapter(this, phrases, R.color.category_phrases);
 
 
         // Set the adapter to the listView
         ListView listView = findViewById(R.id.list);
         listView.setAdapter(wordAdapter);
-
-        // Set list view background color
-        listView.setBackgroundColor(Color.rgb(2,210,221));
 
     }
 }

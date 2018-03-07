@@ -43,16 +43,12 @@ public class ColorsActivity extends AppCompatActivity {
 
 
         // Instantiate custom word adapter
-        WordAdapter wordAdapter = new WordAdapter(this, colors);
+        WordAdapter wordAdapter = new WordAdapter(this, colors, R.color.category_colors);
 
 
         // Set the custom word adapter
         ListView listView = findViewById(R.id.list);
         listView.setAdapter(wordAdapter);
-
-
-        // Set list view background color
-        listView.setBackgroundColor(Color.rgb(185,31,196));
 
     }
 }

@@ -43,13 +43,12 @@ public class FamilyActivity extends AppCompatActivity {
         familyMembers.add(new Word("grandfather", "paapa", R.drawable.family_grandfather));
 
 
-        WordAdapter wordAdapter = new WordAdapter(this, familyMembers);
+        // Instantiate custom word adapter
+        WordAdapter wordAdapter = new WordAdapter(this, familyMembers, R.color.category_family);
 
+
+        // Set the adapter to the listView
         ListView listView = findViewById(R.id.list);
         listView.setAdapter(wordAdapter);
-
-
-        // Background color to green
-        listView.setBackgroundColor(Color.rgb(155,220,62));
     }
 }

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 
@@ -16,9 +17,12 @@ import java.util.ArrayList;
  */
 
 public class WordAdapter extends ArrayAdapter<Word> {
+    int transationBackgroundColor;
 
-    public WordAdapter(Context context, ArrayList<Word> objects) {
+
+    public WordAdapter(Context context, ArrayList<Word> objects, int translationBackgroundColor) {
         super(context, 0, objects);
+        this.transationBackgroundColor = translationBackgroundColor;
     }
 
     @Override
@@ -51,6 +55,10 @@ public class WordAdapter extends ArrayAdapter<Word> {
         }else{
             imageView.setVisibility(View.INVISIBLE);
         }
+
+        // Set linear layout background color
+        LinearLayout translationLinearLayout = listItemView.findViewById(R.id.wordsLayout);
+        translationLinearLayout.setBackgroundColor(transationBackgroundColor);
 
 
         return listItemView;
