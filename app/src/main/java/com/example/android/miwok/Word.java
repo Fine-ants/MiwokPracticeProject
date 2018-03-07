@@ -7,6 +7,7 @@ package com.example.android.miwok;
 public class Word {
     private String englishWord;
     private String miwokTranslation;
+    private int imageResourceId;
 
 
     public Word(String englishWord, String miwokTranslation) {
@@ -14,6 +15,11 @@ public class Word {
         this.miwokTranslation = miwokTranslation;
     }
 
+    public Word(String englishWord, String miwokTranslation, int imageResourceId) {
+        this.englishWord = englishWord;
+        this.miwokTranslation = miwokTranslation;
+        this.imageResourceId = imageResourceId;
+    }
 
     @Override
     public String toString() {
@@ -29,5 +35,9 @@ public class Word {
 
     public String getMiwokTranslation() {
         return miwokTranslation;
+    }
+
+    public int getImageResourceId() {
+        return imageResourceId;
     }
 }
