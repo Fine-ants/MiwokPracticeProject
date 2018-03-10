@@ -1,5 +1,7 @@
 package com.example.android.miwok;
 
+import android.util.Log;
+
 /**
  * Created by jordanhuus on 3/4/2018.
  */

@@ -53,7 +53,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
             imageView.setVisibility(View.VISIBLE);
             imageView.setImageResource(word.getImageResourceId());
         }else{
-            imageView.setVisibility(View.INVISIBLE);
+            imageView.setVisibility(View.GONE);
         }
 
         // Set linear layout background color
