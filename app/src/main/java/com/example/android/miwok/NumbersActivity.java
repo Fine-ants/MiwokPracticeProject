@@ -15,9 +15,11 @@
  */
 package com.example.android.miwok;
 
-import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -30,7 +32,7 @@ public class NumbersActivity extends AppCompatActivity {
         setContentView(R.layout.word_list);
 
 
-        ArrayList<Word> numbers = new ArrayList<>();
+        final ArrayList<Word> numbers = new ArrayList<>();
         numbers.add(new Word("one", "lutti", R.drawable.number_one));
         numbers.add(new Word("two", "otiiko", R.drawable.number_two));
         numbers.add(new Word("three", "tolookosu", R.drawable.number_three));
@@ -50,6 +52,12 @@ public class NumbersActivity extends AppCompatActivity {
         // Set the adapter to the listView
         ListView listView = findViewById(R.id.list);
         listView.setAdapter(itemsAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                MediaPlayer mediaPlayer = MediaPlayer.create(this, )
+            }
+        });
 
     }
 }
