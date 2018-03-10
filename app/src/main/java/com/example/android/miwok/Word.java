@@ -8,9 +8,8 @@ public class Word {
     private String englishWord;
     private String miwokTranslation;
     private static final int NO_IMAGE_PROVIDED = -1;
-    private static final int NO_AUDIO_PROVIDED = -1;
     private int imageResourceId = NO_IMAGE_PROVIDED;
-    private int audioResourceId = NO_AUDIO_PROVIDED;
+    private int audioResourceId;
 
 
     public Word(String englishWord, String miwokTranslation) {
@@ -59,6 +58,10 @@ public class Word {
 
     public boolean hasImage() {
         return imageResourceId != NO_IMAGE_PROVIDED;
+    }
+
+    public int getAudioResourceId() {
+        return audioResourceId;
     }
 }
 

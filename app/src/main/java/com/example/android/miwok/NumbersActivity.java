@@ -55,7 +55,9 @@ public class NumbersActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                MediaPlayer mediaPlayer = MediaPlayer.create(this, )
+                int audio = numbers.get(i).getAudioResourceId();
+                MediaPlayer mediaPlayer = MediaPlayer.create(NumbersActivity.this, audio);
+                mediaPlayer.start();
             }
         });
 
