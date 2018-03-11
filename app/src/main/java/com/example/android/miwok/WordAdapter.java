@@ -17,12 +17,12 @@ import java.util.ArrayList;
  */
 
 public class WordAdapter extends ArrayAdapter<Word> {
-    int transationBackgroundColor;
+    private int translationBackgroundColor;
 
 
     public WordAdapter(Context context, ArrayList<Word> objects, int translationBackgroundColor) {
         super(context, 0, objects);
-        this.transationBackgroundColor = translationBackgroundColor;
+        this.translationBackgroundColor = translationBackgroundColor;
     }
 
     @Override
@@ -58,7 +58,8 @@ public class WordAdapter extends ArrayAdapter<Word> {
 
         // Set linear layout background color
         LinearLayout translationLinearLayout = listItemView.findViewById(R.id.wordsLayout);
-        translationLinearLayout.setBackgroundColor(transationBackgroundColor);
+        translationLinearLayout.setBackgroundColor(translationBackgroundColor);
+        Log.i("Logtag", translationBackgroundColor + "");
 
 
         return listItemView;
