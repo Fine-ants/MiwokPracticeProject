@@ -58,8 +58,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
 
         // Set linear layout background color
         LinearLayout translationLinearLayout = listItemView.findViewById(R.id.wordsLayout);
-        translationLinearLayout.setBackgroundColor(translationBackgroundColor);
-        Log.i("Logtag", translationBackgroundColor + "");
+        translationLinearLayout.setBackgroundResource(translationBackgroundColor);
 
 
         return listItemView;
