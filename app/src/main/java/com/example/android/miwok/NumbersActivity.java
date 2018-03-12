@@ -81,6 +81,12 @@ public class NumbersActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        releaseMedia();
+    }
+
     void releaseMedia(){
         if(mediaPlayer!=null){
             mediaPlayer.release();
