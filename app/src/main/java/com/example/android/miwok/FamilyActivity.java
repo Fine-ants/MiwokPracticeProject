@@ -28,6 +28,14 @@ import java.util.ArrayList;
 
 public class FamilyActivity extends AppCompatActivity {
 
+    private MediaPlayer mediaPlayer;
+    private MediaPlayer.OnCompletionListener onCompletionListener = new MediaPlayer.OnCompletionListener() {
+        @Override
+        public void onCompletion(MediaPlayer mediaPlayer) {
+            releaseMedia();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,11 +65,25 @@ public class FamilyActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.i("Logtag", "onItemClick" + i);
+
+                // Return the color audio resource id
                 int audio = familyMembers.get(i).getAudioResourceId();
-                MediaPlayer mediaPlayer = MediaPlayer.create(FamilyActivity.this, audio);
+
+                // Prior to starting media player, release if already exists
+                releaseMedia();
+                mediaPlayer = MediaPlayer.create(FamilyActivity.this, audio);
                 mediaPlayer.start();
+
+                // When media track is finished call releaseMedia method
+                mediaPlayer.setOnCompletionListener(onCompletionListener);
             }
         });
+    }
+
+    void releaseMedia(){
+        if(mediaPlayer!=null){
+            mediaPlayer.release();
+            mediaPlayer=null;
+        }
     }
 }

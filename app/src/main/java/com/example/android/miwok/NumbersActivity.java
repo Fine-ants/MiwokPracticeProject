@@ -27,6 +27,14 @@ import java.util.ArrayList;
 
 public class NumbersActivity extends AppCompatActivity {
 
+    private MediaPlayer mediaPlayer;
+    private MediaPlayer.OnCompletionListener onCompletionListener = new MediaPlayer.OnCompletionListener() {
+        @Override
+        public void onCompletion(MediaPlayer mediaPlayer) {
+            releaseMedia();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,12 +64,28 @@ public class NumbersActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                // Return the color audio resource id
                 int audio = numbers.get(i).getAudioResourceId();
-                MediaPlayer mediaPlayer = MediaPlayer.create(NumbersActivity.this, audio);
+
+                // Prior to starting media player, release if already exists
+                releaseMedia();
+
+                // Create a new media player and start
+                mediaPlayer = MediaPlayer.create(NumbersActivity.this, audio);
                 mediaPlayer.start();
+
+                // When media track is finished call releaseMedia method
+                mediaPlayer.setOnCompletionListener(onCompletionListener);
             }
         });
 
+    }
+
+    void releaseMedia(){
+        if(mediaPlayer!=null){
+            mediaPlayer.release();
+            mediaPlayer=null;
+        }
     }
 }
 
