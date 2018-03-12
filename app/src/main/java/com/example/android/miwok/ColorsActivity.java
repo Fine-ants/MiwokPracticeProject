@@ -28,7 +28,15 @@ import java.util.ArrayList;
 
 public class ColorsActivity extends AppCompatActivity {
 
-    @Override
+    private MediaPlayer mediaPlayer;
+    private MediaPlayer.OnCompletionListener onCompletionListener = new MediaPlayer.OnCompletionListener(){
+        @Override
+        public void onCompletion(MediaPlayer mediaPlayer) {
+            releaseMedia();
+        }
+    };
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
@@ -56,12 +64,26 @@ public class ColorsActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.i("Logtag", "onItemClick" + i);
+                // Return the color audio resource id
                 int audio = colors.get(i).getAudioResourceId();
-                MediaPlayer mediaPlayer = MediaPlayer.create(ColorsActivity.this, audio);
+
+                // Prior to starting media player, release if already exists
+                releaseMedia();
+
+                // Create a new media player and start
+                mediaPlayer = MediaPlayer.create(ColorsActivity.this, audio);
                 mediaPlayer.start();
+
+                // When media track is finished call releaseMedia method
+                mediaPlayer.setOnCompletionListener(onCompletionListener);
             }
         });
+    }
 
+    void releaseMedia(){
+        if(mediaPlayer!=null){
+            mediaPlayer.release();
+            mediaPlayer=null;
+        }
     }
 }
