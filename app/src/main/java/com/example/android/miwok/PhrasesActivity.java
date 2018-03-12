@@ -67,7 +67,7 @@ public class PhrasesActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 int audio = phrases.get(i).getAudioResourceId();
                 Log.i("Logtag", "onItemClick " + i + " " + audio);
-                MediaPlayer mediaPlayer = MediaPlayer.create(PhrasesActivity.this, audio);
+                mediaPlayer = MediaPlayer.create(PhrasesActivity.this, audio);
                 mediaPlayer.start();
             }
         });
