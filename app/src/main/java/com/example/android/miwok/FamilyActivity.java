@@ -15,11 +15,10 @@
  */
 package com.example.android.miwok;
 
-import android.graphics.Color;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -28,6 +27,29 @@ import java.util.ArrayList;
 
 public class FamilyActivity extends AppCompatActivity {
 
+    private AudioManager audioManager;
+    private AudioManager.OnAudioFocusChangeListener afChangeListener = new AudioManager.OnAudioFocusChangeListener() {
+        @Override
+        public void onAudioFocusChange(int i) {
+            switch (i){
+                // AUDIOFOCUS_GAIN
+                case AudioManager.AUDIOFOCUS_GAIN:
+                    mediaPlayer.start();
+                    break;
+
+                // AUDIOFOCUS_LOSS
+                case AudioManager.AUDIOFOCUS_LOSS:
+                    mediaPlayer.stop();
+                    break;
+
+                // AUDIOFOCUS_LOSS_TRANSIENT and AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK
+                case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
+                case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
+                    mediaPlayer.pause();
+                    break;
+            }
+        }
+    };
     private MediaPlayer mediaPlayer;
     private MediaPlayer.OnCompletionListener onCompletionListener = new MediaPlayer.OnCompletionListener() {
         @Override
@@ -40,6 +62,9 @@ public class FamilyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
+
+        // Retrieve Audio Manager object
+        audioManager = getSystemService(AudioManager.class);
 
 
         final ArrayList<Word> familyMembers = new ArrayList<>();
@@ -68,16 +93,20 @@ public class FamilyActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                // Return the color audio resource id
-                int audio = familyMembers.get(i).getAudioResourceId();
+                // Request Audio Focus
+                int result = audioManager.requestAudioFocus(afChangeListener, AudioManager.STREAM_NOTIFICATION, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+                if(result == AudioManager.AUDIOFOCUS_GAIN){
+                    // Return the color audio resource id
+                    int audio = familyMembers.get(i).getAudioResourceId();
 
-                // Prior to starting media player, release if already exists
-                releaseMedia();
-                mediaPlayer = MediaPlayer.create(FamilyActivity.this, audio);
-                mediaPlayer.start();
+                    // Prior to starting media player, release if already exists
+                    releaseMedia();
+                    mediaPlayer = MediaPlayer.create(FamilyActivity.this, audio);
+                    mediaPlayer.start();
 
-                // When media track is finished call releaseMedia method
-                mediaPlayer.setOnCompletionListener(onCompletionListener);
+                    // When media track is finished call releaseMedia method
+                    mediaPlayer.setOnCompletionListener(onCompletionListener);
+                }
             }
         });
     }
@@ -90,8 +119,14 @@ public class FamilyActivity extends AppCompatActivity {
 
     void releaseMedia(){
         if(mediaPlayer!=null){
+
+            // Release media player object
             mediaPlayer.release();
             mediaPlayer=null;
+
+
+            // Media player is complete, abandon audio focus
+            audioManager.abandonAudioFocus(afChangeListener);
         }
     }
 }
