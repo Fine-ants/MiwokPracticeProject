@@ -61,6 +61,8 @@ public class NumbersActivity extends AppCompatActivity {
         // Set the adapter to the listView
         ListView listView = findViewById(R.id.list);
         listView.setAdapter(itemsAdapter);
+
+        // Set OnItemClickListener for the pronunciation
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

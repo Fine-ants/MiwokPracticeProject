@@ -62,6 +62,8 @@ public class PhrasesActivity extends AppCompatActivity {
         // Set the adapter to the listView
         ListView listView = findViewById(R.id.list);
         listView.setAdapter(wordAdapter);
+
+        // Set OnItemClickListener for the pronunciation
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
