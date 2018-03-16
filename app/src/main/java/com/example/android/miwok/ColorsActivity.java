@@ -16,6 +16,7 @@
 package com.example.android.miwok;
 
 import android.graphics.Color;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,7 +28,30 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class ColorsActivity extends AppCompatActivity {
+    private AudioManager audioManager;
+    private AudioManager.OnAudioFocusChangeListener afChangeListener = new AudioManager.OnAudioFocusChangeListener() {
+        @Override
+        public void onAudioFocusChange(int i) {
+            switch (i){
 
+                // AUDIOFOCUS_GAIN
+                case AudioManager.AUDIOFOCUS_GAIN:
+                    mediaPlayer.start();
+                    break;
+
+                // AUDIOFOCUS_LOSS
+                case AudioManager.AUDIOFOCUS_LOSS:
+                    releaseMedia();
+                    break;
+
+                // AUDIOFOCUS_LOSS_TRANSIENT and AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK
+                case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
+                case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
+                    mediaPlayer.pause();
+                    break;
+            }
+        }
+    };
     private MediaPlayer mediaPlayer;
     private MediaPlayer.OnCompletionListener onCompletionListener = new MediaPlayer.OnCompletionListener(){
         @Override
@@ -40,6 +64,10 @@ public class ColorsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
+
+
+        // Retrieve audio manager object
+        audioManager = getSystemService(AudioManager.class);
 
 
         // Store each word object into array
@@ -66,18 +94,22 @@ public class ColorsActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                // Return the color audio resource id
-                int audio = colors.get(i).getAudioResourceId();
+                // Request audio focus
+                int result = audioManager.requestAudioFocus(afChangeListener, AudioManager.STREAM_NOTIFICATION, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+                if(result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED){
+                    // Return the color audio resource id
+                    int audio = colors.get(i).getAudioResourceId();
 
-                // Prior to starting media player, release if already exists
-                releaseMedia();
+                    // Prior to starting media player, release if already exists
+                    releaseMedia();
 
-                // Create a new media player and start
-                mediaPlayer = MediaPlayer.create(ColorsActivity.this, audio);
-                mediaPlayer.start();
+                    // Create a new media player and start
+                    mediaPlayer = MediaPlayer.create(ColorsActivity.this, audio);
+                    mediaPlayer.start();
 
-                // When media track is finished call releaseMedia method
-                mediaPlayer.setOnCompletionListener(onCompletionListener);
+                    // When media track is finished call releaseMedia method
+                    mediaPlayer.setOnCompletionListener(onCompletionListener);
+                }
             }
         });
     }
