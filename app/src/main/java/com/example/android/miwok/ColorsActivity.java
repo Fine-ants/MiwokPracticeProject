@@ -124,6 +124,9 @@ public class ColorsActivity extends AppCompatActivity {
         if(mediaPlayer!=null){
             mediaPlayer.release();
             mediaPlayer=null;
+
+            // Abandon audio focus
+            audioManager.abandonAudioFocus(afChangeListener);
         }
     }
 }
