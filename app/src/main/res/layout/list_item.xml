@@ -14,7 +14,7 @@
 
     <LinearLayout
         android:id="@+id/wordsLayout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
@@ -41,4 +41,10 @@
             android:textSize="18sp"
             tools:text="miwok translation" />
     </LinearLayout>
+
+    <ImageView
+        android:src="@drawable/ic_play_circle_outline_white_36dp"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_gravity="center_vertical" />
 </LinearLayout>
