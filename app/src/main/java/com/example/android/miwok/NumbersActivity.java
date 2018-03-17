@@ -15,6 +15,7 @@
  */
 package com.example.android.miwok;
 
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,6 +28,30 @@ import java.util.ArrayList;
 
 public class NumbersActivity extends AppCompatActivity {
 
+
+    private AudioManager audioManager;
+    private AudioManager.OnAudioFocusChangeListener afChangeListener = new AudioManager.OnAudioFocusChangeListener() {
+        @Override
+        public void onAudioFocusChange(int i) {
+            switch (i){
+                // AUDIOFOCUS_GAIN
+                case AudioManager.AUDIOFOCUS_GAIN:
+                    mediaPlayer.start();
+                    break;
+
+                // AUDIOFOCUS_LOSS
+                case AudioManager.AUDIOFOCUS_LOSS:
+                    mediaPlayer.stop();
+                    break;
+
+                // AUDIOFOCUS_LOSS_TRANSIENT and AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK
+                case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
+                case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
+                    mediaPlayer.pause();
+                    break;
+            }
+        }
+    };
     private MediaPlayer mediaPlayer;
     private MediaPlayer.OnCompletionListener onCompletionListener = new MediaPlayer.OnCompletionListener() {
         @Override
@@ -39,6 +64,9 @@ public class NumbersActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
+
+        // Retrieve Audio Manager object
+        audioManager = getSystemService(AudioManager.class);
 
 
         final ArrayList<Word> numbers = new ArrayList<>();
@@ -61,21 +89,28 @@ public class NumbersActivity extends AppCompatActivity {
         // Set the adapter to the listView
         ListView listView = findViewById(R.id.list);
         listView.setAdapter(itemsAdapter);
+
+        // Set OnItemClickListener for the pronunciation
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                // Return the color audio resource id
-                int audio = numbers.get(i).getAudioResourceId();
 
-                // Prior to starting media player, release if already exists
-                releaseMedia();
+                // Request Audio Focus
+                int result = audioManager.requestAudioFocus(afChangeListener, AudioManager.STREAM_NOTIFICATION, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+                if(result == AudioManager.AUDIOFOCUS_GAIN) {
+                    // Return the color audio resource id
+                    int audio = numbers.get(i).getAudioResourceId();
 
-                // Create a new media player and start
-                mediaPlayer = MediaPlayer.create(NumbersActivity.this, audio);
-                mediaPlayer.start();
+                    // Prior to starting media player, release if already exists
+                    releaseMedia();
 
-                // When media track is finished call releaseMedia method
-                mediaPlayer.setOnCompletionListener(onCompletionListener);
+                    // Create a new media player and start
+                    mediaPlayer = MediaPlayer.create(NumbersActivity.this, audio);
+                    mediaPlayer.start();
+
+                    // When media track is finished call releaseMedia method
+                    mediaPlayer.setOnCompletionListener(onCompletionListener);
+                }
             }
         });
 
@@ -89,8 +124,14 @@ public class NumbersActivity extends AppCompatActivity {
 
     void releaseMedia(){
         if(mediaPlayer!=null){
+
+            // Release media player object
             mediaPlayer.release();
             mediaPlayer=null;
+
+
+            // Media player is complete, abandon audio focus
+            audioManager.abandonAudioFocus(afChangeListener);
         }
     }
 }
