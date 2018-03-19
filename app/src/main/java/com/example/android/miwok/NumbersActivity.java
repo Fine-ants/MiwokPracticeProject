@@ -15,14 +15,10 @@
  */
 package com.example.android.miwok;
 
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
-
-import java.util.ArrayList;
 
 public class NumbersActivity extends AppCompatActivity {
 
