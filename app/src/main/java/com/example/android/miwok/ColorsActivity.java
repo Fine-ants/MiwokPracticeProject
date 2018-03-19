@@ -38,7 +38,7 @@ public class ColorsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_category);
 
 
-        // Replace withh ColorsFragment
+        // Replace with ColorsFragment
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.container, new ColorsFragment());
