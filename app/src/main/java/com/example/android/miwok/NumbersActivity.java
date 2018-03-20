@@ -34,11 +34,6 @@ public class NumbersActivity extends AppCompatActivity {
         transaction.replace(R.id.container, new NumbersFragment());
         transaction.commit();   
     }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
 }
 
 
